@@ -16,22 +16,20 @@ def options():
     print("2 - Entrar em Canal")
     print("3 - Postar no Canal")
     print("4 - Dar like")
-    prin + mensagemt("5 - Dar dislike")
+    print("5 - Dar dislike")
     print("6 - Ver Nível")
-    print("7 - Ver Ranking")
-    print("8 - Sair")
+    print("7 - Sair")
 
 menu_option = 0
 
 #Variável para definir se está ou não em um canal
 in_channel = False
-print(in_channel)
 
-while (menu_option != '8'):
+while (menu_option != '7'):
     
     options()
     menu_option = str(input("Digite a opção desejada: "))
- + mensagem
+
     if (menu_option == '1'):
         print(" --- Criação de Canal --- ")
         canal_nome = str(input("Qual o nome do canal a ser criado? "))
@@ -56,20 +54,29 @@ while (menu_option != '8'):
             print("Retornando ao Menu\n")
 
     elif (menu_option == '4'):
-        rep = os.system("freechains chain reps '#" + canal_nome + "'""' + resultado[0]'")
         if (in_channel == True and rep >= 10):
-
-            
-        elif (in_channel == True and rep < 10):
-            print ("Você não pode dar like")
+            senha_priv = resultado[1]
+            rep = os.system("freechains chain reps '#" + canal_nome + "'""' + resultado[0]'")
+            if (rep >= 10):
+                hash_msg = str(input("Qual o hash da mensagem que deseja dar like? "))
+                like = os.system("freechains chain '#" + canal_nome + "' like'" + hash_msg + "' --sign='senha_priv'")
+            else:
+                print ("Você não pode dar like")
 
         else:
             print("Você deve criar ou entrar em um canal antes")
             print("Retornando ao Menu\n")
 
     elif (menu_option == '5'):
-        if (in_channel == True):
-            print("Em desenvolvimento")
+        if (in_channel == True and rep >= 10):
+            senha_priv = resultado[1]
+            rep = os.system("freechains chain reps '#" + canal_nome + "'""' + resultado[0]'")
+            if (rep >= 10):
+                hash_msg = str(input("Qual o hash da mensagem que deseja dar dislike? "))
+                like = os.system("freechains chain '#" + canal_nome + "' dislike'" + hash_msg + "' --sign='senha_priv'")
+            else:
+                print ("Você não pode dar dislike")
+
         else:
             print("Você deve criar ou entrar em um canal antes")
             print("Retornando ao Menu\n")
@@ -96,12 +103,23 @@ while (menu_option != '8'):
         
             elif (senha_entrar == resultado[0]):
                 print("Você é o Pioneiro")
-            else:
-                print("Você deve criar ou entrar em um canal antes")
-                print("Retornando ao Menu\n")       
+        else:
+            print("Você deve criar ou entrar em um canal antes")
+            print("Retornando ao Menu\n")       
         
     elif (menu_option == '7'):
-        print(" Em desenvolvimento ")
+        if (in_channel == True):
+            print ("--- Ver Consensus ---")
+            con = os.system("freechains chain '#" + canal_nome + "' consensus")
+            view = str(input("Deseja ver o payload de alguma mensagem? (Digite s ou n) "))
+
+            if (view == 's'):
+                hash_msg = str(input("Qual o hash da mensagem que deseja ver? "))
+                payload = os.system()
+
+            else:
+                print("Retronando ao menu")
+
 
     elif (menu_option == '8'):
         print("Saindo")
