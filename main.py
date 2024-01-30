@@ -34,14 +34,14 @@ while (menu_option != '7'):
         print(" --- Criação de Canal --- ")
         canal_nome = str(input("Qual o nome do canal a ser criado? "))
         senha_entrar = resultado[0]
-        criar = os.system("freechains chains join '#" + canal_nome + "'" + senha_entrar)
+        criar = os.system("freechains chains join '#" + canal_nome + "'senha_entrar'")
         in_channel = True
 
     elif (menu_option == '2'):
         print(" --- Entrar em Canal --- ")
         canal_nome = str(input("Qual o nome do canal que deseja entrar? "))
         senha_entrar = str(input("Qual a chave pública do canal? "))
-        entrar = os.system("freechains chains join '#" + canal_nome + "'" + senha_entrar)
+        entrar = os.system("freechains chains join '#" + canal_nome + "''" + senha_entrar + '"')
         in_channel = True
 
     elif (menu_option == '3'):
@@ -54,7 +54,7 @@ while (menu_option != '7'):
             print("Retornando ao Menu\n")
 
     elif (menu_option == '4'):
-        if (in_channel == True and rep >= 10):
+        if (in_channel == True and rep >= 20):
             senha_priv = resultado[1]
             rep = os.system("freechains chain reps '#" + canal_nome + "'""' + resultado[0]'")
             if (rep >= 10):
@@ -68,7 +68,7 @@ while (menu_option != '7'):
             print("Retornando ao Menu\n")
 
     elif (menu_option == '5'):
-        if (in_channel == True and rep >= 10):
+        if (in_channel == True and rep >= 20):
             senha_priv = resultado[1]
             rep = os.system("freechains chain reps '#" + canal_nome + "'""' + resultado[0]'")
             if (rep >= 10):
@@ -107,21 +107,22 @@ while (menu_option != '7'):
             print("Você deve criar ou entrar em um canal antes")
             print("Retornando ao Menu\n")       
         
+        ## A ser implementado
+    #elif (menu_option == '8'):
+        #if (in_channel == True):
+            #print ("--- Ver Consensus ---")
+            #con = os.system("freechains chain '#" + canal_nome + "' consensus")
+            #view = str(input("Deseja ver o payload de alguma mensagem? (Digite s ou n) "))
+
+            #if (view == 's'):
+                #hash_msg = str(input("Qual o hash da mensagem que deseja ver? "))
+                #payload = os.system("freechains chain '#" + canal_nome + "' get payload '" + hash_msg + "' file 'tmp/x.pay'")
+
+            #else:
+                #print("Retronando ao menu")
+
+
     elif (menu_option == '7'):
-        if (in_channel == True):
-            print ("--- Ver Consensus ---")
-            con = os.system("freechains chain '#" + canal_nome + "' consensus")
-            view = str(input("Deseja ver o payload de alguma mensagem? (Digite s ou n) "))
-
-            if (view == 's'):
-                hash_msg = str(input("Qual o hash da mensagem que deseja ver? "))
-                payload = os.system()
-
-            else:
-                print("Retronando ao menu")
-
-
-    elif (menu_option == '8'):
         print("Saindo")
     
     else:
